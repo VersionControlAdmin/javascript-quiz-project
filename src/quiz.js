@@ -40,8 +40,6 @@ class Quiz {
     }
 
     averageDifficulty() {
-        let averageDifficulty = 0;
-        this.questions.forEach((element) => averageDifficulty += element.difficulty)
-        return averageDifficulty/this.questions.length;
+        return this.questions.reduce((acc,crr) => acc + crr.difficulty, 0)/this.questions.length;
     }
 }
