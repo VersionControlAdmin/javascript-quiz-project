@@ -42,4 +42,13 @@ class Quiz {
     averageDifficulty() {
         return this.questions.reduce((acc,crr) => acc + crr.difficulty, 0)/this.questions.length;
     }
+    
+    restartQuiz(questions, timeLimit, timeRemaining) {
+        this.questions = questions;
+        this.timeLimit = timeLimit;
+        this.timeRemaining = timeRemaining;
+        this.correctAnswers = 0;
+        this.currentQuestionIndex = 0;
+    }
+
 }
