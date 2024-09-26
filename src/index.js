@@ -61,7 +61,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /************  TIMER  ************/
 
-  let timer;
+  const timer = setInterval(updateTimer, 1000);
+
+  function updateTimer() {
+    quiz.updateRemainingTime();
+    const minutes = Math.floor(quiz.timeRemaining / 60).toString().padStart(2, "0");
+    const seconds = (quiz.timeRemaining % 60).toString().padStart(2, "0");
+    timeRemainingContainer.innerText = `${minutes}:${seconds}`;
+    if (quiz.timeRemaining <= 0) {
+      clearInterval(timer);
+      showResults();
+      restartQuiz();
+    }
+  };
 
 
   /************  EVENT LISTENERS  ************/
@@ -87,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showResults();
       return;
     }
-
+    remainingTimeFlag = true;
     // Clear the previous question text and question choices
     questionContainer.innerText = "";
     choiceContainer.innerHTML = "";
@@ -189,5 +201,5 @@ document.addEventListener("DOMContentLoaded", () => {
     // 3. Update the result container (div#result) inner text to show the number of correct answers out of total questions
     resultContainer.innerText = resultText; // This value is hardcoded as a placeholder
   }
-  
+
 });

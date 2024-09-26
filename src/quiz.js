@@ -51,4 +51,7 @@ class Quiz {
         this.currentQuestionIndex = 0;
     }
 
+    updateRemainingTime() {
+        this.timeRemaining--;
+    }
 }
